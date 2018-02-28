@@ -71,19 +71,19 @@ public class LexicographicalSubset {
 	}
  
 	public static void main(String[] args) {
-      Scanner in = new Scanner(System.in);
+      		Scanner in = new Scanner(System.in);
 		int t = in.nextInt();
 		for(int i = 0; i < t; i++) {
 			int n = in.nextInt();
-         int size = 1<<n;
-         int[] arr = new int[n];
-         for(int j = 0; j < n; j++) {
-             arr[j] = in.nextInt();
-         }
-         char[][] sets = subset(arr, n, size);
-         sets = sort(sets, size, n);
-         printSets(sets, n, size);
-         System.out.println();
-   	}
+			int size = 1<<n;
+			int[] arr = new int[n];
+			for(int j = 0; j < n; j++) {
+				arr[j] = in.nextInt();
+			}
+			char[][] sets = subset(arr, n, size);
+			sets = sort(sets, size, n);
+			printSets(sets, n, size);
+			System.out.println();
+		}
 	}
 }
