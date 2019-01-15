@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Graph {
     int v;
-    AtomicInteger i;
+    AtomicInteger idx;
     List<LabeledVertex> vertices;
     Map<String, Integer> vertexIdxMap;
 
@@ -30,13 +30,13 @@ public class Graph {
         try {
             Integer s = vertexIdxMap.get(src);
             if(s == null) {
-                s = i.incrementAndGet();
+                s = idx.incrementAndGet();
                 vertexIdxMap.put(src, s);
                 this.vertices.add(s, new LabeledVertex(s, src));
             }
             Integer d = vertexIdxMap.get(dest);
             if(d == null) {
-                d = i.incrementAndGet();
+                d = idx.incrementAndGet();
                 vertexIdxMap.put(dest, d);
                 this.vertices.add(d, new LabeledVertex(d, dest));
             }
@@ -74,7 +74,7 @@ public class Graph {
     void addVertex( String src ) {
         writeLock.lock();
         try {
-            Integer s = i.incrementAndGet();
+            Integer s = idx.incrementAndGet();
             vertexIdxMap.put(src, s);
             this.vertices.add(s, new LabeledVertex(s, src));
         } finally {
