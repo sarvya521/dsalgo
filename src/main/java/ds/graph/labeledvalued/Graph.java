@@ -16,7 +16,7 @@ public class Graph {
 
     Graph(int v) {
         this.v = v;
-        this.i = new AtomicInteger();
+        this.idx = new AtomicInteger();
         this.vertices = new ArrayList<LabeledValuedVertex>();
         this.vertexIdxMap = new LinkedHashMap<String, Integer>();
 
