@@ -1,87 +1,71 @@
 package ds.graph;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Graph {
-    int v;
-    int i;
-    List<Vertex> vertices;
-    Map<Vertex, Integer> vertexIdxMap;
+    public static void main(String[] args) {
+        Graph g = new Graph();
+        Graph.Node a = g.new Node("A");
+        Graph.Node b = g.new Node("B");
 
-    Graph(int v, int i, int vertices) {
-        this.v = v;
-        this.i = i;
-        this.vertices = new ArrayList<Vertex>();
-        for(int idx = 0; idx < v; idx++) {
-            this.vertices.add(new Vertex(idx));
-        }
+        Graph.Edge e = g.new Edge();
+        e.setDestination(b);
+        e.setWeight(1.0);
+
+        a.addEdge(e);
+
+        a.getEdges().get(0).getDestination();// returns the destination Node of the first Edge
+
+        a.getEdges().get(0).getWeight();// returns the weight of the first Edge
+
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
     }
 
-    void addEdge( int src, int dest ) {
-        this.vertices.get(src).neighbours.add(this.vertices.get(dest));
-        this.vertices.get(dest).neighbours.add(this.vertices.get(src));
-    }
+    class Node {
+        private String label;
+        private List<Graph.Edge> edges;
 
-    class Vertex {
-        int idx;
-        List<Vertex> neighbours;
-
-        Vertex(int idx) {
-            this.idx = idx;
-            this.neighbours = new ArrayList<Vertex>();
-        }
-    }
-
-    class LabeledVertex {
-        int idx;
-        String label;
-        List<Vertex> neighbours;
-
-        LabeledVertex(int idx, String label) {
-            this.idx = idx;
+        public Node(String label) {
             this.label = label;
-            this.neighbours = new ArrayList<Vertex>();
+            this.edges = new ArrayList<Graph.Edge>();
         }
+
+        public String getLabel() {
+            return label;
+        }
+
+        public List<Graph.Edge> getEdges() {
+            return edges;
+        }
+
+        public void addEdge(Graph.Edge edge) {
+            this.edges.add(edge);
+        }
+
     }
 
-    class ValuedVertex {
-        int idx;
-        int val;
-        List<Vertex> neighbours;
-        PriorityQueue<Vertex> pq;
+    class Edge {
+        private Graph.Node destination;
+        private double weight;
 
-        ValuedVertex(int idx, int val) {
-            this.idx = idx;
-            this.val = val;
-            this.neighbours = new ArrayList<Vertex>();
+        public Graph.Node getDestination() {
+            return destination;
         }
 
-        ValuedVertex(int idx, int val, Comparator<Vertex> comparator) {
-            this.idx = idx;
-            this.val = val;
-            this.pq = new PriorityQueue<Vertex>(comparator);
-        }
-    }
-
-    class LabledValuedVertex {
-        int idx;
-        int val;
-        String label;
-        List<Vertex> neighbours;
-        PriorityQueue<Vertex> pq;
-
-        LabledValuedVertex(int val, int idx, String label) {
-            this.idx = idx;
-            this.val = val;
-            this.label = label;
-            this.neighbours = new ArrayList<Vertex>();
+        public void setDestination(Graph.Node destination) {
+            this.destination = destination;
         }
 
-        LabledValuedVertex(int val, int idx, String label, Comparator<Vertex> comparator) {
-            this.idx = idx;
-            this.val = val;
-            this.label = label;
-            this.pq = new PriorityQueue<Vertex>(comparator);
+        public double getWeight() {
+            return weight;
         }
+
+        public void setWeight(double weight) {
+            this.weight = weight;
+        }
+
     }
 }
+

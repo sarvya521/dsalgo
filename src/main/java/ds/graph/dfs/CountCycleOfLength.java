@@ -79,7 +79,7 @@ public class CountCycleOfLength {
 
     // driver code
     public static void main(String[] args) throws Exception {
-        process();
+        //process();
         /*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         V = Integer.parseInt(br.readLine());
         int graph[][] = new int[V][V];
@@ -100,7 +100,29 @@ public class CountCycleOfLength {
                 {0, 0, 1, 0, 0, 1, 0, 1},
                 {0, 0, 0, 1, 1, 0, 1, 0}};
         */
+
+        System.out.println(primes(500000));
     }
 
 
+    public static BitSet primes(int max) {
+        BitSet primeSet = new BitSet(max + 1);
+        if (max < 2) {
+            return primeSet;
+        }
+        int limit = (int) Math.sqrt(max + 1);
+        primeSet.set(2);
+        for (int i = 3; i < max + 1; i += 2) {
+            primeSet.set(i);
+        }
+        for (int i = 3; i <= limit; i += 2) {
+            if (!primeSet.get(i)) {
+                continue;
+            }
+            for (int j = i * i; j < max; j += i) {
+                primeSet.clear(j);
+            }
+        }
+        return primeSet;
+    }
 }
