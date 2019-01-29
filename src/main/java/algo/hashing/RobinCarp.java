@@ -1,4 +1,4 @@
-package hashing;
+package algo.hashing;
 
 public class RobinCarp {
 	

@@ -1,4 +1,4 @@
-package recursion;
+package algo.recursion;
 
 import java.util.HashMap;
 import java.util.Map;

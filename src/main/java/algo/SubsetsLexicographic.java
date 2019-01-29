@@ -1,3 +1,4 @@
+package algo;
 
 public class SubsetsLexicographic {
 	public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package algo;
+
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;

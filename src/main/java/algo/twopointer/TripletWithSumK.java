@@ -1,4 +1,4 @@
-package twopointer;
+package algo.twopointer;
 
 import java.util.Arrays;
 

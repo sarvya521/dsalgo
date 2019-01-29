@@ -1,4 +1,4 @@
-package bitwise;
+package algo.bitwise;
 
 import java.io.*;
 import java.util.*;

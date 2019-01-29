@@ -1,4 +1,4 @@
-package string;
+package algo.string;
 
 import java.util.PriorityQueue;
 

@@ -1,4 +1,4 @@
-package hashing;
+package algo.hashing;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package recursion;
+package algo.recursion;
 import java.io.*;
 import java.util.*;
 import java.text.*;

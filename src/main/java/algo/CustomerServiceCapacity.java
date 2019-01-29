@@ -1,3 +1,5 @@
+package algo;
+
 import java.util.Collection;
 import java.util.TreeMap;
 

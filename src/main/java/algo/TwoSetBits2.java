@@ -1,3 +1,5 @@
+package algo;
+
 public class TwoSetBits2 {
 	
 	static long power(long a, long b, int m) {

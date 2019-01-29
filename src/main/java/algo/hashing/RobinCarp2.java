@@ -1,4 +1,4 @@
-package hashing;
+package algo.hashing;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
