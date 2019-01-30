@@ -1,3 +1,6 @@
 .idea/
+.settings/
 target/
 dsalgo.iml
+.project
+.classpath

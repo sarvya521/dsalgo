@@ -1,4 +1,4 @@
-package tree;
+package ds.tree;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
