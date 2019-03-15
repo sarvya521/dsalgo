@@ -3,29 +3,49 @@ package algo.matrix;
 import java.util.Scanner;
 
 /*
- * 0  1  2  3 
- * 4  5  6  7
- * 8  9  10 11
- * 12 13 14 15
- * 
- * 0 1 2 3 7 11 15 14 13 12 8  4  5  6  10 9
- * 0 1 2 3 4  5  6  7  8  9 10 11 12 13 14 15
- * 
- * 1  2  3  4
- * 5  6  7  8
- * 9  10 11 12
- * 13 14 15 16
- * 
- * 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
- * 
- * 00 01 02 03
- * 10 11 12 13
- * 20 21 22 23
- * 30 31 32 33
- * 
- * 00 01 02 03 13 23 33 32 31 30 20 10 11 12 22 21
- *  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
- */
+Given a 2D square matrix, print the matrix in a spiral order. Refer examples for more details.
+
+Input Format
+
+First line of input contains T - number of test cases. First line of each test case contains N - size of the matrix [NxN]. Its followed by N lines each containing N integers - elements of the matrix.
+
+Constraints
+
+1 <= T <= 100
+1 <= N <= 100
+-100 <= ar[i][j] <= 100
+
+Output Format
+
+For each test case, print the matrix in a spiral order, separated by newline.
+
+Sample Input 0
+
+4
+1
+1
+2
+1 2
+4 3
+3
+1 2 3
+8 9 4
+7 6 5
+5
+-44 25 -52 69 -5
+17 22 51 27 -44
+-79 28 -78 1 -47
+65 -77 -14 -21 -6
+-96 43 -21 -20 90
+
+Sample Output 0
+
+1
+1 2 3 4
+1 2 3 4 5 6 7 8 9
+-44 25 -52 69 -5 -44 -47 -6 90 -20 -21 43 -96 65 -79 17 22 51 27 1 -21 -14 -77 28 -78
+
+*/
 
 public class SpiralMatrix {
 

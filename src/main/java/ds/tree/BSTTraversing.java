@@ -10,20 +10,11 @@ public class BSTTraversing {
 		Integer data;
 		Node left;
 		Node right;
+
+		Node parent;
 		
 		Node(int data) {
 			this.data = data;
-		}
-		
-		int getHeight() {
-			return getHeight(this);
-		}
-		
-		int getHeight(Node root) {
-			if (root == null) {
-				return 0;
-			}
-			return Math.max(getHeight(root.left), getHeight(root.right))+1;
 		}
 		
 		@Override
@@ -55,12 +46,14 @@ public class BSTTraversing {
 						current = current.right;
 						if(current == null) {
 							parent.right = node;
+							node.parent = parent;
 							break;
 						}
 					} else {
 						current = current.left;
 						if(current == null) {
 							parent.left = node;
+							node.parent = parent;
 							break;
 						}
 					}
@@ -94,7 +87,28 @@ public class BSTTraversing {
 			postOrder(root.right, builder);
 			builder.append(root).append(" ");
 		}
-		
+
+		Node inOrderSuccessor(Node root, Node node) {
+			if(node.right != null) {
+				return minimumValueNode(node.right);
+			}
+
+			Node p = node.parent;
+			while(p != null && p.right == node) {
+				node = p;
+				p = p.parent;
+			}
+			return p;
+		}
+
+		Node minimumValueNode(Node node) {
+			Node current = node;
+			while(current.left != null) {
+				current = current.left;
+			}
+			return current;
+		}
+
 		int countChildren(Node root) {
 			if(root == null) {
 				return 0;
@@ -133,7 +147,7 @@ public class BSTTraversing {
 	}
 	
 	private static void solve(int[] arr) {
-		int n = arr.length;
+		/*int n = arr.length;
 		BST bst = new BST();
 		for(int i = 0; i < n; i++) {
 			Node node = new Node(arr[i]);
@@ -151,7 +165,7 @@ public class BSTTraversing {
 		System.out.println("\n");
 		bst.getAllNodesChildren(bst.root);
 		System.out.println("\n");
-		bst.getAllNodesDepth(bst.root);
+		bst.getAllNodesDepth(bst.root);*/
 	}
 	
 	private static void solve(String[] queries, int t) {

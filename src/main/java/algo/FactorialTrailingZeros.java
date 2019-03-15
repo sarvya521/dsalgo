@@ -1,4 +1,4 @@
-package algo.matrix;
+package algo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +38,6 @@ public class FactorialTrailingZeros {
 		for(int i = 5; i < 21; i++) {
 			System.out.println(i+"\t\t\t"+fact(i)+"\t\t\t"+solve(i));
 		}
-		
 	}
 
 }
