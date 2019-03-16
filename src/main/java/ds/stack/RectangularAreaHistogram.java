@@ -1,4 +1,4 @@
-package stack;
+package ds.stack;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

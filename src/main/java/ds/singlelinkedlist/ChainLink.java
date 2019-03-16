@@ -1,4 +1,4 @@
-package singlelinkedlist;
+package ds.singlelinkedlist;
 
 public class ChainLink {
 

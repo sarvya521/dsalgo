@@ -1,4 +1,4 @@
-package circularqueue;
+package ds.circularqueue;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
