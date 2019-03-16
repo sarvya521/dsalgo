@@ -1,12 +1,51 @@
 package algo;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
+/*
+Given the number of seconds elapsed since epoch [01-01-1970 00:00:00 Thursday], you need to find the current date, along with the day.
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by T lines, each line contains the number of seconds elapsed since epoch. 
+
+Constraints
+
+1 <= T <= 10000 
+0 <= S <= 109
+
+Output Format
+
+For each test case, print the date in DD-MMM-YYYY format, followed by the day, separated by newline. 
+
+Sample Input 0
+
+10
+86399
+86400
+2592000
+2678400
+8639999
+8640000
+31535999
+31536000
+68169599
+68169600
+
+Sample Output 0
+
+01-JAN-1970 Thursday
+02-JAN-1970 Friday
+31-JAN-1970 Saturday
+01-FEB-1970 Sunday
+10-APR-1970 Friday
+11-APR-1970 Saturday
+31-DEC-1970 Thursday
+01-JAN-1971 Friday
+28-FEB-1972 Monday
+29-FEB-1972 Tuesday
+ */
 public class TimeOfYear {
 
 	private static final Map<Integer, String> MONTH = new HashMap<Integer, String>();
@@ -117,7 +156,8 @@ public class TimeOfYear {
 	}
 	
 	public static void main(String[] args) {
-		long seconds = 978284504;//System.currentTimeMillis()/1000;
+		//long seconds = 978284504;//
+		long seconds = System.currentTimeMillis()/1000;
 		int date=1;
 		int month=1;
 		int year=1970;

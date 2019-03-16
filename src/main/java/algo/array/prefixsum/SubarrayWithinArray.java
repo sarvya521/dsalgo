@@ -1,4 +1,4 @@
-package algo;
+package algo.array.prefixsum;
 
 import java.io.BufferedReader;
 import java.util.Arrays;

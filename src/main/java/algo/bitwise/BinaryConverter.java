@@ -2,6 +2,39 @@ package algo.bitwise;
 
 import java.util.Scanner;
 
+/*
+Given a positive integer, print its binary representation. 
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by T lines, each line containing a single integer. 
+
+Constraints
+
+1 <= T <= 10000 
+0 <= N <= 109 
+
+Output Format
+
+For each test case, print binary representation, separated by new line. 
+
+Sample Input 0
+
+5
+10
+15
+7
+1
+120
+
+Sample Output 0
+
+1010
+1111
+111
+1
+1111000
+ */
 public class BinaryConverter {
 	
    /* static String binary(int n) {
@@ -31,29 +64,6 @@ public class BinaryConverter {
     	System.out.println(str);
 	}
     
-    /*static void binary(int[] arr) {
-		String str = binary(arr[0]);
-		for(int i = 1; i < arr.length; i++) {
-			int n = arr[i];
-			if(n == arr[i-1]) {
-				System.out.println(str);
-				continue;
-			}
-			str = "";
-			int div = 0;
-			int rem = 0;
-			while(n != 1) {
-				div = n / 2;
-				rem = n % 2;
-				n = div;
-				str = rem + str;
-			}
-			str = 1 + str;
-			System.out.println(str);
-		}
-		
-	}*/
-    
     /*public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int t = in.nextInt();
@@ -65,8 +75,7 @@ public class BinaryConverter {
     }*/
 
 	public static void main(String[] args) {
-		//binary(new int[]{13,13,13,13,15});
-		binary(0);
+		binary(15);
 	}
 
 }
