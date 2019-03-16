@@ -67,13 +67,13 @@ public class BookingSolution {
 	public static void main(String[] args) {
 		String keywords = "breakfast beach citycenter location metro view staff price";
 		int[] hotel_ids = new int[]{1, 2, 1, 1, 2};
-		String[] reviews = new String[]{"This hotel has a nice view of the citycenter. The location is perfect.", "The breakfast is ok. Regarding location, it is quite far from citycenter but price is cheap so it is worth.","Location is excellent, 5 minutes from citycenter. There is also a metro station very close to the hotel.","They said I couldn't take my dog and there were other guests with dogs! That is not fair.","Very friendly staff and good cost-benefit ratio. Its location is a bit far from citycenter."};
+		String[] reviews = new String[] { "This hotel has a nice view of the citycenter. The location is perfect.",
+				"The breakfast is ok. Regarding location, it is quite far from citycenter but price is cheap so it is worth.",
+				"Location is excellent, 5 minutes from citycenter. There is also a metro station very close to the hotel.",
+				"They said I couldn't take my dog and there were other guests with dogs! That is not fair.",
+				"Very friendly staff and good cost-benefit ratio. Its location is a bit far from citycenter." };
 		int[] op = sort_hotels(keywords, hotel_ids, reviews);
 		System.out.println(Arrays.stream(op).boxed().collect(Collectors.toList()));
-		
-		TreeMap<Integer, Integer> map = new TreeMap<>();
-		Collection<Integer> vals = map.values();
-		
 	}
 
 }

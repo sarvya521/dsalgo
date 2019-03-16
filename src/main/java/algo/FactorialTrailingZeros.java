@@ -1,8 +1,5 @@
 package algo;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class FactorialTrailingZeros {
 	
 	static long solve(long n) {
@@ -22,21 +19,8 @@ public class FactorialTrailingZeros {
 	}
 
 	public static void main(String[] args) {
-		/*long i, fact = 1;
-		long number = 7;//(long)Math.pow(10, 15);
-		for (i = 1; i <= number; i++) {
-			fact = fact * i;
-		}
-		int count = 0;
-		while(fact > 119) {
-			if(fact % 10 == 0) {
-				count++;
-			}
-			fact = fact/10;
-		}
-		System.out.println("Factorial Zero Count of " + number + " is: "+count);*/
 		for(int i = 5; i < 21; i++) {
-			System.out.println(i+"\t\t\t"+fact(i)+"\t\t\t"+solve(i));
+			System.out.println(i+"\t"+fact(i)+"\t"+solve(i));
 		}
 	}
 
