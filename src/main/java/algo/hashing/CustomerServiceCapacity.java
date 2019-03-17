@@ -1,4 +1,4 @@
-package algo;
+package algo.hashing;
 
 import java.util.Collection;
 import java.util.TreeMap;

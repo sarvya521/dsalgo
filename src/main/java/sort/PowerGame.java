@@ -1,4 +1,4 @@
-package algo.hashing;
+package sort;
 
 import java.util.Arrays;
 

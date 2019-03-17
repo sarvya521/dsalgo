@@ -5,6 +5,54 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/*
+Given 2 strings A and B, print all the interleavings of the 2 strings.
+An interleaved string of given two strings preserves the order of characters in individual strings 
+and uses all the characters of both the strings. 
+For simplicity, you can assume that the strings have unique characters. 
+
+Input Format
+
+First line of input contains T - number of test cases. Its followed by T lines, each contains 2 space separated strings A and B. 
+
+Constraints
+
+1 <= T <= 100 
+'a' <= A[i], B[i] <= 'z' 
+1 <= len(A), len(B) <= 10 
+
+Output Format
+
+For each test case, 
+print the test case number, followed by the interleavings of the 2 strings in a sorted order, separated by newline. 
+
+Sample Input 0
+
+2
+nkb gl
+bn zh
+
+Sample Output 0
+
+Case #1:
+glnkb
+gnkbl
+gnklb
+gnlkb
+ngkbl
+ngklb
+nglkb
+nkbgl
+nkgbl
+nkglb
+Case #2:
+bnzh
+bzhn
+bznh
+zbhn
+zbnh
+zhbn
+ */
 public class InterleavingString {
 
 	static void interleave(String a, int p1, String b, int p2, char[] arr, List<String> list, int m ,int n, int i) {
@@ -52,10 +100,7 @@ public class InterleavingString {
 	}
 	
 	public static void main(String[] args) {
-		/*Pattern pattern = Pattern.compile("[a-z]+[\\s][a-z]+");
-		String s = "nkb gl";
-		System.out.println(pattern.matcher(s).matches());*/
-		Scanner in = new Scanner(System.in);
+		/*Scanner in = new Scanner(System.in);
 		int t = in.nextInt();
 		for(int i = 0; i < t; i++) {
 			String str1 = in.next();
@@ -63,9 +108,9 @@ public class InterleavingString {
 			System.out.println("Case #"+(i+1)+":");
 			interleave(str1+" "+str2);
 		}
-		in.close();
-		/*String str = "nkb gl";
-		interleave(str);*/
+		in.close();*/
+		String str = "nkb gl";
+		interleave(str);
 	}
 	
 }
