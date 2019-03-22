@@ -1,8 +1,11 @@
 package algo.matrix;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /*
 Given a 6 X 6 2D Array, arr:
@@ -133,5 +136,10 @@ public class HourglassSum {
         int result = hourglassSum(arr);
         System.out.println(String.valueOf(result));
         scanner.close();
+    }
+
+    static int[] matchingStrings(String[] strings, String[] queries) {
+        final Map<String, Integer> collect = Arrays.stream(strings).collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(e -> 1)));
+        return Arrays.stream(queries).mapToInt(i -> collect.get(i)).toArray();
     }
 }
