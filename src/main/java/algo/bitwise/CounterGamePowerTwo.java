@@ -23,7 +23,7 @@ public class CounterGamePowerTwo {
                     }                    
                 } else {
                     if((length&1)==1) {
-					return "Richard";
+						return "Richard";
                     } else {
                         return "Louise";
                     }

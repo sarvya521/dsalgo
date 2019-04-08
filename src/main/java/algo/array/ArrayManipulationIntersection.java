@@ -1,63 +1,40 @@
 package algo.array;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ArrayManipulationIntersection {
     private static final Scanner scanner = new Scanner(System.in);
 
-    // Complete the arrayManipulation function below.
     static long arrayManipulation(int n, int[][] queries) {
-        ArrayList<Pair<Integer, Integer>> v = new ArrayList<Pair<Integer, Integer>>();
+        int []arr = new int[n + 2];
+        // Start performing 'm' operations
+        for (int i = 0; i < queries.length; i++) {
+            int[] query = queries[i];
+            // Store lower and upper
+            // index i.e. range
+            int lowerbound = query[0];
+            int upperbound = query[1];
+            int k = query[2];
 
-        Arrays.stream(queries)
-                .filter(q -> q[2] != 0)
-                .forEach(q -> {
-                    int a;
-                    int b;
-                    int k;
-                    a = q[0];
-                    b = q[1];
-                    k = q[2];
+            // Add k to the lower_bound
+            arr[lowerbound] += k;
 
-
-                    //storing the query
-                    //this will add k in the prefix sum for index >= a
-                    v.add(new Pair<Integer, Integer>(a, k));
-
-                    //adding -1*k will remove k from the prefix sum for index > b
-                    if (a != b) {
-                        v.add(new Pair<Integer, Integer>(b + 1, -1 * k));
-                    } else {
-                        v.add(new Pair<Integer, Integer>(b, 0));
-                    }
-                });
-
-        long mx = 0;
-        long sum = 0;
-
-        Collections.sort(v, new Comparator<Pair<Integer, Integer>>() {
-            @Override
-            public int compare(Pair<Integer, Integer> p1, Pair<Integer, Integer> p2) {
-                return p1.first.compareTo(p2.first);
-            }
-        });
-
-        for (int i = 0; i < v.size(); i++) {
-            if(v.get(i).second == 0) {
-                if(i < v.size()-1 && v.get(i+1).first != v.get(i).first) {
-                    sum = 0;
-                }
-            } else {
-                sum += v.get(i).second;
-            }
-
-            mx = Math.max(mx, sum);
+            // Reduce upper_bound+1
+            // indexed value by k
+            arr[upperbound + 1] -= k;
         }
 
-        return mx;
+        // Find maximum sum
+        // possible from all values
+        long sum = 0, res = Integer.MIN_VALUE;
+        for (int i = 0; i < n + 2; ++i) {
+            sum += arr[i];
+            res = Math.max(res, sum);
+        }
+
+        // return maximum value
+        return res;
     }
 
     public static void main(String[] args) throws IOException {
@@ -86,32 +63,15 @@ public class ArrayManipulationIntersection {
         /*int n = 10;
         int[][] queries = {{1, 5, 3}, {4, 8, 7}, {6, 9, 1}};
         System.out.println(arrayManipulation(n, queries));*/
-        int n = 4;
+        /*int n = 4;
         int[][] queries = {{2, 3, 603}, {1, 1, 286}, {4, 4, 882}};
+        System.out.println(arrayManipulation(n, queries));*/
+        int n = 8;
+        int[][] queries = {{6, 8, 100}, {5, 5, 500}, {5, 6, 100}, {1, 3, 400}, {8, 8, 600}};
         System.out.println(arrayManipulation(n, queries));
         /*int n = 7;
         int[][] queries = {{2, 2, 286}, {3, 5, 603}, {6, 6, 882}, {6, 7, 1}};
         System.out.println(arrayManipulation(n, queries));*/
-    }
-}
-
-final class Pair<T1, T2> {
-    public T1 first;
-    public T2 second;
-
-    public Pair() {
-        first = null;
-        second = null;
-    }
-
-    public Pair(T1 firstValue, T2 secondValue) {
-        first = firstValue;
-        second = secondValue;
-    }
-
-    public Pair(Pair<T1, T2> pairToCopy) {
-        first = pairToCopy.first;
-        second = pairToCopy.second;
     }
 }
 
