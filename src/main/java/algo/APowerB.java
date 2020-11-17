@@ -68,6 +68,32 @@ public class APowerB {
 			return (a * temp) % 1000000007;
 		}
 	}
+
+	private static void powerSimple(int a, int b) {
+		long p = 1;
+		while(b > 0) {
+			p = p * a;
+			b--;
+		}
+		System.out.println(p);
+	}
+
+	private static long powerSimpleRec(long a, long b) {
+		if(b == 1) {
+			return a;
+		}
+		a = powerSimpleRec(a, b-1) * a;
+		return a;
+	}
+
+//	public static void main(String[] args) throws Exception {
+//		String input = null;
+//		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+//			input = br.readLine();
+//		}
+//		String[] ip = input.split(" ");
+//		power(Integer.parseInt(ip[0]), Integer.parseInt(ip[1]));
+//	}
 	
 	public static void main(String[] args) {
 		/*Scanner in = new Scanner(System.in);
@@ -78,8 +104,11 @@ public class APowerB {
 			System.out.println(power(a, b));
         }
         in.close();*/
-		System.out.println(powerRec(99999, 999));
-		System.out.println(power(99999, 999));
+		/*System.out.println(powerRec(99999, 999));
+		System.out.println(power(99999, 999));*/
+		System.out.println(Math.pow(9, 6));
+
+		System.out.println(powerSimpleRec(9, 6));
 	}
 
 }
