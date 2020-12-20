@@ -1,7 +1,8 @@
 package algo.recursion;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class SubsetsOfArray {
 	
@@ -89,25 +90,35 @@ public class SubsetsOfArray {
 			solve(set, i + 1, subset, set[i]); 
 		}
 	}
-    
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-		int t = in.nextInt();
-		for(int i = 0; i < t; i++) {
-			int n = in.nextInt();
-			String[] set = new String[n];
-            int[] arr = new int[n];
-			for(int j = 0; j < n; j++) {
-				arr[j] = in.nextInt();
-			}
-            Arrays.sort(arr);
-            for(int j = 0; j < n; j++) {
-				set[j] = String.valueOf(arr[j]);
-			}
-            solve(set, 0, "", "");
-			System.out.println();
+
+	public static boolean solve(int[] arr, int n, int sum, int k, int i) {
+		if(sum == k) {
+			return true;
 		}
-		in.close();
-    }
+		if(sum > k || i == n) {
+			return false;
+		}
+		if (solve(arr, n, sum + arr[i], k, i + 1)) {
+			return true;
+		}
+		if (solve(arr, n, sum, k, i + 1)) {
+			return true;
+		}
+		return false;
+	}
+
+	public static void main(String[] args) throws Exception {
+		String input = null;
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+			int t = Integer.parseInt(br.readLine());
+			for(int i = 0; i < t; i++) {
+				String[] iparr = br.readLine().split(" ");
+				int n = Integer.parseInt(iparr[0]);
+				int k = Integer.parseInt(iparr[1]);
+				int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+				System.out.println(solve(arr, n, 0, k, 0) ? "YES" : "NO");
+			}
+		}
+	}
 
 }

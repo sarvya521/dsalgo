@@ -5,9 +5,27 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class InsertionSort {
+
+	static void countSort(int[] arr, int M) {
+		int n = arr.length;
+		int[] cnt = new int[M+1];
+
+		for(int i = 0; i < n; i++) {
+			cnt[arr[i]]++;
+		}
+
+		int k = 0;
+		for(int i = 0; i <= M; i++) {
+			if(cnt[i] > 0) {
+				for(int j = 0; j < cnt[i]; j++, k++) {
+					arr[k] = i;
+				}
+			}
+		}
+	}
 	
 	static void insertionSort(int[] arr) {
-		int n = arr.length;
+		/*int n = arr.length;
 		for(int i = 1; i < n; i++) {
 			for(int j = i-1; j >= 0; j--) {
 				if(arr[j+1] < arr[j]) {
@@ -19,6 +37,19 @@ public class InsertionSort {
 				}
 			}
 			
+		}*/
+		int n = arr.length;
+		for(int i = 1; i < n; i++) {
+			int x = arr[i];
+			int j = i - 1;
+			for(j = i-1; j >= 0; j--) {
+				if(arr[j] > x) {
+					arr[j+1] = arr[j];
+				} else {
+					break;
+				}
+			}
+			arr[j + 1] = x;
 		}
 	}
 
@@ -40,6 +71,10 @@ public class InsertionSort {
     	int[] arr = {5, 3, 4, 7, 2, 8, 6, 9, 1};
         insertionSort(arr);
         System.out.println(Arrays.stream(arr).boxed().collect(Collectors.toList()));
+
+		arr = new int[] {1, 2, 1, 1, 3, 4, 4};
+		insertionSort(arr);
+		System.out.println(Arrays.stream(arr).boxed().collect(Collectors.toList()));
     }
      
     /*public static void insertionSort(int[] array) {

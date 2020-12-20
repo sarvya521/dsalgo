@@ -41,13 +41,33 @@ public class DistinctElementInWindow {
 
 	public static void main(String[] args) {
 		//int[] arr = new int[]{-2, -4, -2, 4, -2};
-		int[] arr = new int[]{-2, -4, -2, 4, -2};
+		int[] arr = new int[]{3, -4, -3, -4, -2, 0, 2, -2, 6, 0};
 		int n = arr.length;
-		int k = 3;
+		int k = 7;
 		solve(arr, n, k);
 	}
-	
+
 	static void solve(int[] arr, int n, int k) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for(int i = 0; i < k; i++) {
+			int v = map.getOrDefault(arr[i], 0);
+			map.put(arr[i], v + 1);
+		}
+		System.out.print(map.size()+" ");
+		for(int i = k; i < n; i ++) {
+			int v = map.get(arr[i-k]);
+			if(v == 1) {
+				map.remove(arr[i-k]);
+			} else {
+				map.put(arr[i-k], v-1);
+			}
+			v = map.getOrDefault(arr[i], 0);
+			map.put(arr[i], v+1);
+			System.out.print(map.size()+" ");
+		}
+	}
+	
+	/*static void solve(int[] arr, int n, int k) {
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		int e;
 		Integer c;
@@ -77,5 +97,5 @@ public class DistinctElementInWindow {
 			}
 			System.out.print(map.size()+" ");
 		}
-	}
+	}*/
 }

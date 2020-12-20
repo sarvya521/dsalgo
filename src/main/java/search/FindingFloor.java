@@ -28,7 +28,7 @@ public class FindingFloor {
 		
 		int i = list.size()-1;
 		int j = n-1;
-		while(j >= 0 && i >= 0) {
+		/*while(j >= 0 && i >= 0) {
 			if(list.get(i) == arr[j]) {
 				map.put(list.get(i), arr[j]);
 				i--;
@@ -40,11 +40,31 @@ public class FindingFloor {
 			} else if(list.get(i) < arr[0]) {
 				break;
 			}
+		}*/
+
+		for(int q = 0; q < queries.length; q++) {
+			int k = queries[q];
+			int ans = Integer.MIN_VALUE;
+			int lo = 0, hi = arr.length-1;
+			while(lo <= hi) {
+				int mid = (lo + hi)/2;
+				if(arr[mid] == k) {
+					ans = k;
+					break;
+				}
+				if(arr[mid] > k) {
+					hi = mid - 1;
+				} else {
+					ans = arr[mid];
+					lo = mid + 1;
+				}
+			}
+			System.out.println("floor("+k+")="+ans);
 		}
 		
-		for(i = 0; i < m; i++) {
+		/*for(i = 0; i < m; i++) {
 			System.out.println("floor("+queries[i]+")="+map.get(queries[i]));
-		}
+		}*/
 	}
 	
 	public static void main(String[] args) {

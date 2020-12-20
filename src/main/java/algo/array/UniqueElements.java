@@ -33,11 +33,11 @@ public class UniqueElements {
     }
 
     public static void main(String[] args) throws Exception {
-        /*try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             int t = Integer.parseInt(br.readLine());
             int[] arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             uniqueElements(arr, t);
-        }*/
+        }
         uniqueElements(new int[]{5,4,10,9,21,4,10}, 7);
     }
 }

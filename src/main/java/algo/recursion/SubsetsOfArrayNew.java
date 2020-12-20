@@ -78,7 +78,7 @@ public class SubsetsOfArrayNew {
 	}
  
 	public static void main(String[] args) {
-		int[] arr = new int[]{57, 96};
+		int[] arr = new int[]{10,4,5,9,1};
 		subset(arr);
 	}
 
