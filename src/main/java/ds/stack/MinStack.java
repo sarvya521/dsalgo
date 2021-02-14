@@ -1,58 +1,42 @@
 package ds.stack;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Stack;
 
-public class Stack {
+public class MinStack {
 
 	static enum Operations {
 		push, pop, top, getMin
 	}
-	static int maxsize = (int)1e8;
-	static int[] arr = new int[maxsize];
-	static int[] minarr = new int[maxsize];
-	static int top = -1;
-
-	static int size() {
-		return top+1;
-	}
+	static Stack<Integer> stack = new Stack<>();
+	static Stack<Integer> minStack = new Stack<>();
 
 	static void push(int n) {
-		int prevmin;
-		if(top == -1) {
-			prevmin = Integer.MAX_VALUE;
-		} else {
-			prevmin = minarr[top];
-		}
-		top++;
-		arr[top] = n;
-		if(n < prevmin) {
-			minarr[top] = n;
-		} else {
-			minarr[top] = prevmin;
+		stack.push(n);
+		if(minStack.isEmpty()) {
+			minStack.push(n);
+		} else if(n < minStack.peek()) {
+			minStack.push(n);
 		}
 	}
 
 	static void pop() {
-		if(size() == 0) {
-			//System.out.println("Empty");
-			return;
+		if(!stack.isEmpty()) {
+			final Integer t = stack.pop();
+			if(minStack.peek().equals(t)) {
+				minStack.pop();
+			}
 		}
-		//System.out.println(arr[top]);
-		top--;
 	}
 
 	static int top() {
-		return top;
+		return stack.peek();
 	}
 
 	static int getMin() {
-		if(top == -1) {
+		if(stack.isEmpty()) {
 			return -1;
 		}
-		return minarr[top];
+		return minStack.peek();
 	}
 
 	static void operate(String[] arr, int t) {
@@ -114,7 +98,7 @@ public class Stack {
 			}
 			operate(arr, t);
 		}*/
-		operate("P 10 P 9 g P 8 g P 7 g P 6 g p g p g p g p g p g");
+		operate("P 34 g P 35 g P 27 g P 42 g P 5 g P 28 g P 39 g P 20 g P 28 g");
 //
 //* P  : Corresponds to push() in stack
 //* p : Corresponds to pop()

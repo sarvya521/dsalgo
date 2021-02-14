@@ -2,19 +2,54 @@ package dynamicprogramming;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 public class SubsequenceSumMeetInTheMiddle {
-	
-	static long[] partSubequenceSum(int[] input, int n, int c) {
-		long[] sums = new long[1<<n];
-		for(int i = 0; i<(1<<n); i++) {
+
+	private static int lowerBound(long[] arr, long key) {
+		// int idx = Arrays.binarySearch(arr, key);
+		// if(idx > -1) {
+		//     return idx;
+		// }
+		// return (Math.abs(idx) - 2);
+
+		int lo = 0;
+		int hi = arr.length;
+		while(lo < hi) {
+			int mid = lo + (hi - lo) / 2;
+			if(arr[mid] < key) {
+				lo = mid + 1;
+			} else {
+				hi = mid;
+			}
+		}
+		return lo;
+	}
+
+	private static int upperBound(long[] arr, long key) {
+		// int idx = Arrays.binarySearch(arr, key);
+		// if(idx > -1) {
+		//     return idx;
+		// }
+		// return (Math.abs(idx) - 1);
+
+		int lo = 0;
+		int hi = arr.length;
+		while(lo < hi) {
+			int mid = lo + (hi - lo) / 2;
+			if (arr[mid] > key) {
+				hi = mid;
+			} else {
+				lo = mid + 1;
+			}
+		}
+		return lo;
+	}
+
+	private static long[] partSubequenceSum(int[] input, int n, int c) {
+		int m = 1<<n;
+		long[] sums = new long[m];
+		for(int i = 0; i<m; i++) {
 			long sum = 0;
 			for(int j = 0; j < n; j++) {
 				if((i & (1<<j)) > 0) {
@@ -25,95 +60,41 @@ public class SubsequenceSumMeetInTheMiddle {
 		}
 		return sums;
 	}
-	
-	/*static TreeMap<Long, Long> partSubequenceSum(int[] input, int n, int c) {
-		TreeMap<Long, Long> map = new TreeMap<Long, Long>(); 
-		Long cnt = null;
-		for(int i = 0; i<(1<<n); i++) {
-			long sum = 0;
-			for(int j = 0; j < n; j++) {
-				if((i & (1<<j)) > 0) {
-					sum += input[j+c];
-				}
-			}
-			cnt = map.get(sum);
-			if(cnt == null) {
-				cnt = 0L;
-			}
-			map.put(sum, cnt+1);
+
+	private static int solve(int a, int b, int[] arr) {
+		int n = arr.length;
+		long[] sumsPart1 = partSubequenceSum(arr, n/2, 0);
+		long[] sumsPart2;
+		if(n % 2 != 0) {
+			sumsPart2 = partSubequenceSum(arr, n/2 + 1, n/2);
+		} else {
+			sumsPart2 = partSubequenceSum(arr, n/2, n/2);
 		}
-		return map;
-	}*/
-	
-	/*static long solve(int a, int b, int[] input) {
-		int size = input.length;
-		long[] sumsPart1 = partSubequenceSum(input, size/2, 0);
-		TreeMap<Long, Long> sumsPart2 = partSubequenceSum(input, size-size/2, size/2);
-		
-        
-		System.out.println(sumsPart1);
-		System.out.println(sumsPart2);
-		
-        
-		long count = 0;
-		long s2, s1;
-		long v2, v1;
-        long firstS1 = sumsPart1.firstKey();
-		for(Map.Entry<Long, Long> entry2: sumsPart2.entrySet()) {
-			s2 = entry2.getKey();
-			v2 = entry2.getValue();
-            if(s2+firstS1 > b) {
-				break;
-			}
-			for(Map.Entry<Long, Long> entry1: sumsPart1.entrySet()) {
-				s1 = entry1.getKey();
-				v1 = entry1.getValue();
-				if(s1 > (b-s2)) {
-					break;
-				} else if(s1 >= (a-s2) && s1 <= (b-s2)) {
-					count += v2*v1;
-				}
-			}
-		}		
-		
-		return count;
-	}
-	
-	static void solve(int t, int[][] queries, int[] A, int[] B) {
-		int a, b;
-		int[] input = null;
-		for(int i = 0; i < t; i++) {
-			a = A[i];
-			b = B[i];
-			input = queries[i];
-			System.out.println(solve(a, b, input));
+		Arrays.sort(sumsPart2);
+
+		int ans = 0;
+		for (long l : sumsPart1) {
+			int lo = lowerBound(sumsPart2, a-l);
+			int hi = upperBound(sumsPart2, b-l);
+			ans+=(hi-sumsPart2[0])-(lo-sumsPart2[0]);
 		}
+		return ans;
 	}
 
 	public static void main(String[] args) throws Exception {
-		BufferedReader input = new BufferedReader (new InputStreamReader(System.in));
-		int t = Integer.parseInt(input.readLine());
-		int i, j, n, a, b;
-		String[] arr = null;
-		int[] A = new int[t];
-		int[] B = new int[t];
-		int[][] queries = new int[t][];
-		for(i = 0; i < t; i++) {
-			arr = input.readLine().trim().split(" ");
-			n = Integer.parseInt(arr[0]);
-			a = Integer.parseInt(arr[1]);
-			b = Integer.parseInt(arr[2]);
-			arr = input.readLine().trim().split(" ");
-			int[] testCase = new int[n];
-			for(j = 0; j < n; j++) {
-				testCase[j] = Integer.parseInt(arr[j]);
+		StringBuilder builder = new StringBuilder();
+		try(BufferedReader input = new BufferedReader (new InputStreamReader(System.in))) {
+			int t = Integer.parseInt(input.readLine());
+			for(int i = 0; i < t; i++) {
+				String[] ip = input.readLine().split(" ");
+				int n = Integer.parseInt(ip[0]);
+				int a = Integer.parseInt(ip[1]);
+				int b = Integer.parseInt(ip[2]);
+				final int[] arr = Arrays.stream(input.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+				builder.append(solve(a, b, arr)).append(System.lineSeparator());
 			}
-			queries[i] = testCase;
-			A[i] = a;
-			B[i] = b;
 		}
-		input.close();
-		solve(t, queries, A, B);
-	}*/
+		System.out.println(builder);
+	}
 
 }

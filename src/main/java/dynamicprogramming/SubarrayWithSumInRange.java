@@ -25,6 +25,21 @@ public class SubarrayWithSumInRange {
         }
         return count;
     }
+
+	static int solveNew(int arr[], int a, int b) {
+		int ans = 0;
+		int n = arr.length;
+		for(int i = 0; i < n; i++) {
+			int sum = 0;
+			for(int j = i; j < n; j++) {
+				sum += arr[j];
+			}
+			if(sum >= a && sum <= b) {
+				ans++;
+			}
+		}
+		return ans;
+	}
 	
 	private static void solve(String[] queries) {
 		for(int i = 0; i < queries.length; i=i+2) {
